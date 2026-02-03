@@ -3,16 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+/**
+ * 
+ * Order of dessert progression
+ * Jello -> muffin -> donut -> peppermint -> cookie -> swirl -> cake -> cream -> sandwich
+ * 
+ */
+
+
 public class PlayerBehavior : MonoBehaviour
 {
     // Start is called before the first frame update
     public float speed = 3f;
     public GameObject fruitHeld;
     public GameObject[] fruits;
+    public Collider collider;
 
     // Start is called before the first frame update
     void Start()
     {
+        collider = GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -26,6 +37,9 @@ public class PlayerBehavior : MonoBehaviour
             fruitHeld.transform.position = transform.position;
 
         }
+
+
+        
 
         if (Keyboard.current.leftArrowKey.isPressed)
         {
@@ -51,7 +65,7 @@ public class PlayerBehavior : MonoBehaviour
             newPos.y = newPos.y - speed * Time.deltaTime;
             transform.position = newPos;
         }
-        if (Keyboard.current.spaceKey.isPressed)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             int num = Random.Range(0, fruits.Length);
 
@@ -68,5 +82,7 @@ public class PlayerBehavior : MonoBehaviour
             fruitHeld.GetComponent<Collider2D>().enabled = false;
 
         }
+
+
     }
 }
