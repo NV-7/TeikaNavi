@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Sandwich
+  - Peppermint
+  - Cookie
+  - cream
+  - jello
+  - muffin
+  - cupcake
+  - donut
+  - swirl
+  - cake
   layers:
   - Default
   - TransparentFX

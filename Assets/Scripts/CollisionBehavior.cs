@@ -25,12 +25,21 @@ public class CollisionBehavior : MonoBehaviour
     {
         
         
-        if (dessert.name.Equals(col.gameObject.name))
+        if (col.gameObject.CompareTag(dessert.tag))
         {
             print("collion detected");
             Debug.Log("Collision Detected" + col.gameObject.name + "with " + dessert.name);
-            
+            if (this.gameObject.GetInstanceID() > col.gameObject.GetInstanceID())
+            {
+              
+
+                // 3. Destroy both colliding objects
+                Destroy(col.gameObject);
+                Destroy(this.gameObject);
+            }
         }
+
+    }
         
     }
-}
+

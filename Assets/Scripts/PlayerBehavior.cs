@@ -24,6 +24,7 @@ public class PlayerBehavior : MonoBehaviour
     void Start()
     {
         collider = GetComponent<Collider>();
+        speed = 10;
     }
 
     // Update is called once per frame
@@ -37,6 +38,8 @@ public class PlayerBehavior : MonoBehaviour
             fruitHeld.transform.position = transform.position;
 
         }
+
+        
 
 
         
@@ -78,8 +81,11 @@ public class PlayerBehavior : MonoBehaviour
             
             fruitHeld = Instantiate(fruits[num], transform.position, Quaternion.identity);
 
+            
             fruitHeld.GetComponent<Rigidbody2D>().gravityScale = 0;
             fruitHeld.GetComponent<Collider2D>().enabled = false;
+            fruitHeld.GetComponent<Collider2D>().enabled = false;
+
 
         }
 

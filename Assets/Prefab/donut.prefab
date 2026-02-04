@@ -29,6 +29,10 @@ PrefabInstance:
       value: donut
       objectReference: {fileID: 0}
     - target: {fileID: 1334838698205780848, guid: 6dd289cb2a80268449fc9eeda6085164, type: 3}
+      propertyPath: m_TagString
+      value: donut
+      objectReference: {fileID: 0}
+    - target: {fileID: 1334838698205780848, guid: 6dd289cb2a80268449fc9eeda6085164, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
