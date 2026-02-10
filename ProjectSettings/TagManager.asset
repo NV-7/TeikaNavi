@@ -14,6 +14,9 @@ TagManager:
   - donut
   - swirl
   - cake
+  - Current
+  - Top
+  - Wall
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: -4412888608345607397}
   - component: {fileID: 5266280644594769708}
   - component: {fileID: 2616235479921321833}
+  - component: {fileID: 1509040303187358758}
+  - component: {fileID: 1398552713856145427}
   m_Layer: 0
   m_Name: Sandwich
   m_TagString: Sandwich
@@ -105,7 +107,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 400cf31247a65604faa7d1596c18b06a, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -203,7 +205,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334838698205780848}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7fddee4ab919b0f4cb2f0861af083e67, type: 3}
   m_Name: 
@@ -220,3 +222,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85ba86c6ce7f114190b47ff6332d062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1509040303187358758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334838698205780848}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e3edc5c17e3dd4f8c45173342e4701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1398552713856145427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334838698205780848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1705f6912df826843a18f754643b8389, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeStart: 0
+  timeOut: 0

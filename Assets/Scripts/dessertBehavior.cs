@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class CollisionBehavior : MonoBehaviour
-
-    
-   
+public class dessertBehavior : MonoBehaviour
 {
     GameObject dessert;
     // Start is called before the first frame update
@@ -31,6 +28,8 @@ public class CollisionBehavior : MonoBehaviour
             Debug.Log("Collision Detected" + col.gameObject.name + "with " + dessert.name);
             if (this.gameObject.GetInstanceID() > col.gameObject.GetInstanceID())
             {
+              
+
                 // 3. Destroy both colliding objects
                 Destroy(col.gameObject);
                 Destroy(this.gameObject);

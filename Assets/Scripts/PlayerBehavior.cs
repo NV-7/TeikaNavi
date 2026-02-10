@@ -24,25 +24,14 @@ public class PlayerBehavior : MonoBehaviour
     void Start()
     {
         collider = GetComponent<Collider>();
-        speed = 10;
+        speed = 10f;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (fruitHeld != null)
-        {
-            Vector3 playerPos = transform.position;
-            Vector3 fruitPos = new Vector3(0.0f, -6.0f, 0.0f);
-
-            fruitHeld.transform.position = transform.position;
-
-        }
-
-        
-
-
-        
+       
 
         if (Keyboard.current.leftArrowKey.isPressed)
         {
@@ -56,20 +45,14 @@ public class PlayerBehavior : MonoBehaviour
             newPos.x = newPos.x + speed * Time.deltaTime;
             transform.position = newPos;
         }
-        if (Keyboard.current.upArrowKey.isPressed)
-        {
-            Vector3 newPos = transform.position;
-            newPos.y = newPos.y + speed * Time.deltaTime;
-            transform.position = newPos;
-        }
-        if (Keyboard.current.downArrowKey.isPressed)
-        {
-            Vector3 newPos = transform.position;
-            newPos.y = newPos.y - speed * Time.deltaTime;
-            transform.position = newPos;
-        }
+
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
+
+           
+             //   createFruit();
+           
+            float start = Time.time;
             int num = Random.Range(0, fruits.Length);
 
 
@@ -78,17 +61,37 @@ public class PlayerBehavior : MonoBehaviour
 
             Collider2D coll = fruitHeld.GetComponent<Collider2D>();
             coll.enabled = true;
+
+            Vector3 fruitPos = transform.position;
+            fruitPos.y = -5;
             
             fruitHeld = Instantiate(fruits[num], transform.position, Quaternion.identity);
+            fruitHeld.tag = "Current";
 
-            
             fruitHeld.GetComponent<Rigidbody2D>().gravityScale = 0;
             fruitHeld.GetComponent<Collider2D>().enabled = false;
             fruitHeld.GetComponent<Collider2D>().enabled = false;
 
+            float timePassed = Time.time - start;
+            print(timePassed);
 
         }
 
+
+    }
+    public void createFruit()
+    {
+        int num = Random.Range(0, fruits.Length);
+
+
+        Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
+        rb.gravityScale = 1.0f;
+
+        Collider2D coll = fruitHeld.GetComponent<Collider2D>();
+        coll.enabled = true;
+
+        fruitHeld = Instantiate(fruits[num], transform.position, Quaternion.identity);
+        fruitHeld.tag = "current";
 
     }
 }
