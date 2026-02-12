@@ -25,14 +25,13 @@ public class PlayerBehavior : MonoBehaviour
     {
         collider = GetComponent<Collider>();
         speed = 10f;
+       
         
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-
         if (Keyboard.current.leftArrowKey.isPressed)
         {
             Vector3 newPos = transform.position;
@@ -48,25 +47,25 @@ public class PlayerBehavior : MonoBehaviour
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-
-           
-             //   createFruit();
+            createFruit();
            
             float start = Time.time;
             int num = Random.Range(0, fruits.Length);
+            GameObject newFruit = fruits[num];
 
 
             Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
-            rb.gravityScale = 1.0f;
+            rb.gravityScale = 3.0f;
 
             Collider2D coll = fruitHeld.GetComponent<Collider2D>();
             coll.enabled = true;
+            
 
             Vector3 fruitPos = transform.position;
-            fruitPos.y = -5;
+            fruitPos.y = -7;
+          
+            fruitHeld = Instantiate(newFruit, transform.position, Quaternion.identity);
             
-            fruitHeld = Instantiate(fruits[num], transform.position, Quaternion.identity);
-            fruitHeld.tag = "Current";
 
             fruitHeld.GetComponent<Rigidbody2D>().gravityScale = 0;
             fruitHeld.GetComponent<Collider2D>().enabled = false;
@@ -81,14 +80,14 @@ public class PlayerBehavior : MonoBehaviour
     }
     public void createFruit()
     {
+
         int num = Random.Range(0, fruits.Length);
 
+       // Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
+       // rb.gravityScale = 1.0f;
 
-        Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
-        rb.gravityScale = 1.0f;
-
-        Collider2D coll = fruitHeld.GetComponent<Collider2D>();
-        coll.enabled = true;
+       // Collider2D coll = fruitHeld.GetComponent<Collider2D>();
+       // coll.enabled = true;
 
         fruitHeld = Instantiate(fruits[num], transform.position, Quaternion.identity);
         fruitHeld.tag = "current";
