@@ -6,9 +6,8 @@ using UnityEngine;
 public class BorderBehavior : MonoBehaviour
 {
     float timeStart;
-    float timeOut;
-
-    GameObject gameOver;
+    float timeOut = 2f;
+    public GameObject gameOver;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +23,7 @@ public class BorderBehavior : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         timeStart = Time.time;
-        if (collision.gameObject.CompareTag("fruit"))
+        if (collision.gameObject.CompareTag("dessert"))
         {
             if ((Time.time - timeStart) > timeOut)
             {
@@ -57,6 +56,6 @@ public class BorderBehavior : MonoBehaviour
             }
 
         }
-        timeStart = 0;
+        
     }
 }

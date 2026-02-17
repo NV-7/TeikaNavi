@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1398552713856145427}
   m_Layer: 0
   m_Name: Sandwich
-  m_TagString: Sandwich
+  m_TagString: dessert
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,10 +241,8 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1334838698205780848}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1705f6912df826843a18f754643b8389, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStart: 0
-  timeOut: 0

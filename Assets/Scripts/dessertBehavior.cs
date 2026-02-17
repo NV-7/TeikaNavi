@@ -6,6 +6,7 @@ using UnityEngine;
 public class dessertBehavior : MonoBehaviour
 {
     GameObject dessert;
+    public GameObject[] fruits = { };
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,8 @@ public class dessertBehavior : MonoBehaviour
     {
         
     }
+
+    
 
     void OnCollisionEnter2D(Collision2D col)
     {

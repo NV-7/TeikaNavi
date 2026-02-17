@@ -4,29 +4,30 @@ using UnityEngine;
 
 public class TopBorder : MonoBehaviour
 {
-    public float timeStart;
-    public float timeOut;
-
+    float timeStart;
+    float timeOut = 2f;
+    GameObject gameOver;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         timeStart = Time.time;
-        if (collision.gameObject.CompareTag("Top"))
+        if (collision.gameObject.CompareTag("dessert"))
         {
             if ((Time.time - timeStart) > timeOut)
             {
                 Debug.Log("Yaaa");
+                gameOver.SetActive(true);
             }
 
         }
@@ -42,7 +43,7 @@ public class TopBorder : MonoBehaviour
             }
 
         }
-        
+
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -54,6 +55,6 @@ public class TopBorder : MonoBehaviour
             }
 
         }
-        timeStart = 0;
+
     }
 }

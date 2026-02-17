@@ -19,6 +19,7 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject fruitHeld;
     public GameObject[] fruits;
     public Collider collider;
+    public GameObject gameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -54,23 +55,21 @@ public class PlayerBehavior : MonoBehaviour
             GameObject newFruit = fruits[num];
 
 
-            Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
-            rb.gravityScale = 3.0f;
+            //Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
+            //rb.gravityScale = 3.0f;
 
-            Collider2D coll = fruitHeld.GetComponent<Collider2D>();
-            coll.enabled = true;
+            //Collider2D coll = fruitHeld.GetComponent<Collider2D>();
+            //coll.enabled = true;
             
 
-            Vector3 fruitPos = transform.position;
-            fruitPos.y = -7;
-          
-            fruitHeld = Instantiate(newFruit, transform.position, Quaternion.identity);
+            
+            //fruitHeld = Instantiate(newFruit, transform.position, Quaternion.identity);
             
 
             fruitHeld.GetComponent<Rigidbody2D>().gravityScale = 0;
             fruitHeld.GetComponent<Collider2D>().enabled = false;
             fruitHeld.GetComponent<Collider2D>().enabled = false;
-
+            
             float timePassed = Time.time - start;
             print(timePassed);
 
@@ -83,14 +82,23 @@ public class PlayerBehavior : MonoBehaviour
 
         int num = Random.Range(0, fruits.Length);
 
-       // Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
-       // rb.gravityScale = 1.0f;
+         Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
+         rb.gravityScale = 3.0f;
 
-       // Collider2D coll = fruitHeld.GetComponent<Collider2D>();
-       // coll.enabled = true;
+         Collider2D coll = fruitHeld.GetComponent<Collider2D>();
+         coll.enabled = true;
+
+        Vector3 fruitPos = transform.position;
+        fruitPos.y = -7;
+
 
         fruitHeld = Instantiate(fruits[num], transform.position, Quaternion.identity);
-        fruitHeld.tag = "current";
+        fruitHeld.tag = "dessert";
 
+    }
+
+    public void GameOver()
+    {
+        gameOver.SetActive(true);
     }
 }
