@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,7 +9,7 @@ using UnityEngine.InputSystem;
  * 
  * Order of dessert progression
  * Jello -> muffin -> donut -> peppermint -> cookie -> swirl -> cake -> cream -> sandwich
- * 
+ * 0        1         2        3             4         5        5       6        7
  */
 
 
@@ -20,6 +21,10 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject[] fruits;
     public Collider collider;
     public GameObject gameOver;
+
+    public int[] points;
+    public int total;
+    public TMP_Text textField;
 
     // Start is called before the first frame update
     void Start()
@@ -51,24 +56,11 @@ public class PlayerBehavior : MonoBehaviour
             createFruit();
            
             float start = Time.time;
-            int num = Random.Range(0, fruits.Length);
-            GameObject newFruit = fruits[num];
+  
 
-
-            //Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
-            //rb.gravityScale = 3.0f;
-
-            //Collider2D coll = fruitHeld.GetComponent<Collider2D>();
-            //coll.enabled = true;
-            
-
-            
-            //fruitHeld = Instantiate(newFruit, transform.position, Quaternion.identity);
-            
-
-            fruitHeld.GetComponent<Rigidbody2D>().gravityScale = 0;
-            fruitHeld.GetComponent<Collider2D>().enabled = false;
-            fruitHeld.GetComponent<Collider2D>().enabled = false;
+            fruitHeld.GetComponent<Rigidbody2D>().gravityScale = 1f;
+            fruitHeld.GetComponent<Collider2D>().enabled = true;
+            fruitHeld.GetComponent<Collider2D>().enabled = true;
             
             float timePassed = Time.time - start;
             print(timePassed);
@@ -82,19 +74,23 @@ public class PlayerBehavior : MonoBehaviour
 
         int num = Random.Range(0, fruits.Length);
 
-         Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
-         rb.gravityScale = 3.0f;
+        fruitHeld = Instantiate(fruits[num], transform.position, Quaternion.identity);
+
+        Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
+         rb.gravityScale = 1.0f;
 
          Collider2D coll = fruitHeld.GetComponent<Collider2D>();
          coll.enabled = true;
 
         Vector3 fruitPos = transform.position;
-        fruitPos.y = -7;
+        fruitPos.y = -10;
 
-
-        fruitHeld = Instantiate(fruits[num], transform.position, Quaternion.identity);
         fruitHeld.tag = "dessert";
-
+    }
+    public void updateScore(int index)
+    {
+        total += points[index];
+        textField.SetText(" " + total);
     }
 
     public void GameOver()

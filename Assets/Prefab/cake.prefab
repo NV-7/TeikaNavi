@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: cake
       objectReference: {fileID: 0}
+    - target: {fileID: 2616235479921321833, guid: 6dd289cb2a80268449fc9eeda6085164, type: 3}
+      propertyPath: type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5773885264989795999, guid: 6dd289cb2a80268449fc9eeda6085164, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.3904749
