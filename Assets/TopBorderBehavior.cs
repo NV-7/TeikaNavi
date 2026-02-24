@@ -35,7 +35,7 @@ public class TopBorderBehavior : MonoBehaviour
             }
             else
             {
-                //timer = 0f;
+                
             }
 
         }

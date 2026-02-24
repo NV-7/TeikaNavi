@@ -4,16 +4,23 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
 public class dessertBehavior : MonoBehaviour
 {
     GameObject dessert;
+    public AudioSource mergeSound;
     public int type;
     public int points;
-    public GameObject[] desserts;
+    public GameObject nextDessert;
+    public GameObject player;
+    public 
+    
     // Start is called before the first frame update
     void Start()
     {
         dessert = this.gameObject;
+        mergeSound = this.GetComponent<AudioSource>();
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -21,8 +28,6 @@ public class dessertBehavior : MonoBehaviour
     {
 
     }
-
-
 
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -37,27 +42,36 @@ public class dessertBehavior : MonoBehaviour
             Debug.Log("Collision Detected" + col.gameObject.name + "with " + dessert.name);
             int objType = obj.GetComponent<dessertBehavior>().type;
 
-            if (currentType == objType && currentType != 9)
+            if (currentType == objType && nextDessert != null)
             {
                 Debug.Log("Same Type");
-                if (transform.position.x > obj.transform.position.x ||
-                      (transform.position.y > obj.transform.position.y
-                      && transform.position.x == obj.transform.position.x))
+                
+
+                if (gameObject.GetInstanceID() > col.gameObject.GetInstanceID())
                 {
                     Debug.Log("Merge");
+
+                    mergeSound.Play();
+                    //player.GetComponent<PlayerBehavior>().updateScore(this.type);
 
                     Destroy(col.gameObject);
                     Destroy(this.gameObject);
 
-                    GameObject newDessert = Instantiate(desserts[currentType + 1],
+                    GameObject newDessert = Instantiate(nextDessert,
                         Vector3.Lerp(transform.position, obj.transform.position, 0.5f), Quaternion.identity);
                     newDessert.GetComponent<Collider2D>().enabled = true;
                     newDessert.GetComponent<Rigidbody2D>().gravityScale = 3f;
 
-                }
-                    // 3. Destroy both colliding objects
+                    
+                }  
+                  
             }
         }
+    }
+
+    public int getPoints()
+    {
+        return points;
     }
 }
 

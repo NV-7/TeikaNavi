@@ -25,19 +25,28 @@ public class PlayerBehavior : MonoBehaviour
     public int[] points;
     public int total;
     public TMP_Text textField;
+    public AudioSource dropSound;
+
+    public GameObject q;
 
     // Start is called before the first frame update
     void Start()
     {
         collider = GetComponent<Collider>();
         speed = 10f;
-       
+        dropSound = this.GetComponent<AudioSource>();
+        
+
+    
         
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        
+        //fruitHeld.transform.position.x = this.transform.position.x;
+
         if (Keyboard.current.leftArrowKey.isPressed)
         {
             Vector3 newPos = transform.position;
@@ -53,14 +62,15 @@ public class PlayerBehavior : MonoBehaviour
 
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
-            createFruit();
-           
-            float start = Time.time;
-  
+            int choice = GameObject.FindGameObjectWithTag("q").GetComponent<QueueManger>().updateQueue();
 
-            fruitHeld.GetComponent<Rigidbody2D>().gravityScale = 1f;
-            fruitHeld.GetComponent<Collider2D>().enabled = true;
-            fruitHeld.GetComponent<Collider2D>().enabled = true;
+            fruitHeld.GetComponent<Rigidbody2D>().gravityScale = 3f;
+
+            createFruit();
+
+            dropSound.Play();
+
+            float start = Time.time;
             
             float timePassed = Time.time - start;
             print(timePassed);
@@ -77,7 +87,7 @@ public class PlayerBehavior : MonoBehaviour
         fruitHeld = Instantiate(fruits[num], transform.position, Quaternion.identity);
 
         Rigidbody2D rb = fruitHeld.GetComponent<Rigidbody2D>();
-         rb.gravityScale = 1.0f;
+         rb.gravityScale = 0f;
 
          Collider2D coll = fruitHeld.GetComponent<Collider2D>();
          coll.enabled = true;
@@ -87,6 +97,7 @@ public class PlayerBehavior : MonoBehaviour
 
         fruitHeld.tag = "dessert";
     }
+
     public void updateScore(int index)
     {
         total += points[index];
