@@ -13,7 +13,7 @@ public class dessertBehavior : MonoBehaviour
     public int points;
     public GameObject nextDessert;
     public GameObject player;
-    public 
+
     
     // Start is called before the first frame update
     void Start()
