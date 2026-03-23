@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.InputSystem;
 
 
 public class dessertBehavior : MonoBehaviour
@@ -32,7 +33,15 @@ public class dessertBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            bounce();
+        }
+    }
 
+    private void FixedUpdate()
+    {
+      
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -97,6 +106,22 @@ public class dessertBehavior : MonoBehaviour
     public int getPoints()
     {
         return points;
+    }
+
+    public void bounce()
+    {
+        
+        Rigidbody2D rb = this.GetComponent<Rigidbody2D>();
+
+        if(rb == null || rb.simulated == false)
+        {
+            return;
+        }
+
+        float acceleration = 15f;
+        Vector2 direction = new Vector2(Random.Range(-1f,1f), Random.Range(-1f, 1f));
+        
+        rb.AddForce(direction * acceleration, ForceMode2D.Impulse);
     }
 }
 
