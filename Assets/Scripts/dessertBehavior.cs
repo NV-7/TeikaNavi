@@ -12,7 +12,12 @@ public class dessertBehavior : MonoBehaviour
     public int type;
     public int points;
     public GameObject nextDessert;
-    public GameObject player;
+    public PlayerBehavior player;
+    public float timeOut = 2;
+    public float timeStart;
+    public bool hasMerged = false;
+    private float timeThusFar = 0;
+    
 
     
     // Start is called before the first frame update
@@ -20,7 +25,8 @@ public class dessertBehavior : MonoBehaviour
     {
         dessert = this.gameObject;
         mergeSound = this.GetComponent<AudioSource>();
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("Player").gameObject.GetComponent<PlayerBehavior>();
+
     }
 
     // Update is called once per frame
@@ -31,44 +37,63 @@ public class dessertBehavior : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-
-        GameObject obj = col.gameObject;
-        int currentType = this.type;
-
-
-        if (col.gameObject.CompareTag(dessert.tag))
+        if (col.gameObject.CompareTag("dessert"))
         {
-            print("collion detected");
-            Debug.Log("Collision Detected" + col.gameObject.name + "with " + dessert.name);
-            int objType = obj.GetComponent<dessertBehavior>().type;
+            GameObject dessert = col.gameObject;
+            int dessertType = dessert.GetComponent<dessertBehavior>().type;
+            dessertBehavior dessertHasMerged = dessert.GetComponent<dessertBehavior>();
 
-            if (currentType == objType && nextDessert != null)
+            if(dessert == null || this.hasMerged || dessertHasMerged.hasMerged)
             {
-                Debug.Log("Same Type");
-                
-
-                if (gameObject.GetInstanceID() > col.gameObject.GetInstanceID())
+                return;
+            }
+            if(type == dessertType && dessertType != 9)
+            {
+              if(this.gameObject.GetInstanceID() > col.gameObject.GetInstanceID())
                 {
-                    Debug.Log("Merge");
+                   
+                    this.hasMerged = true;
+                    dessertHasMerged.hasMerged = true;
 
-                    mergeSound.Play();
-                    //player.GetComponent<PlayerBehavior>().updateScore(this.type);
+                    AudioSource.PlayClipAtPoint(mergeSound.clip, transform.position);
 
-                    Destroy(col.gameObject);
-                    Destroy(this.gameObject);
+                    GameObject merged = Instantiate(nextDessert, Vector3.Lerp(transform.position, dessert.transform.position, 0.5f), Quaternion.identity);
+                    Debug.Log(merged.name);
+                    merged.GetComponent<Collider2D>().enabled = true;
+                    merged.GetComponent<Rigidbody2D>().gravityScale = 2f;
 
-                    GameObject newDessert = Instantiate(nextDessert,
-                        Vector3.Lerp(transform.position, obj.transform.position, 0.5f), Quaternion.identity);
-                    newDessert.GetComponent<Collider2D>().enabled = true;
-                    newDessert.GetComponent<Rigidbody2D>().gravityScale = 3f;
-
-                    
-                }  
-                  
+                    player.updateScore(this.points);
+                    Destroy(dessert);
+                    Destroy(gameObject);
+                }
             }
         }
     }
 
+
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Top"))
+        {
+            timeThusFar += Time.deltaTime;
+
+            if(timeThusFar > timeOut)
+            {
+                player.GetComponent<PlayerBehavior>().gameOver();
+            }
+      
+        }
+
+       
+    }
+    private void OnTriggerExit2D(Collider2D colllision)
+    {
+        if (colllision.gameObject.CompareTag("Top"))
+        {
+        timeThusFar = 0;
+        Debug.Log("2 Time thus far : " + timeThusFar);
+        }
+    }
     public int getPoints()
     {
         return points;

@@ -18,6 +18,7 @@ TagManager:
   - Wall
   - peppermint
   - dessert
+  - queue
   layers:
   - Default
   - TransparentFX

@@ -19,42 +19,6 @@ public class TopBorder : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        timeStart = Time.time;
-        if (collision.gameObject.CompareTag("dessert"))
-        {
-            if ((Time.time - timeStart) > timeOut)
-            {
-                Debug.Log("Yaaa");
-                gameOver.SetActive(true);
-            }
-
-        }
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Top"))
-        {
-            if ((Time.time - timeStart) > timeOut)
-            {
-                Debug.Log("Yaaa");
-            }
-
-        }
-
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Top"))
-        {
-            if ((Time.time - timeStart) > timeOut)
-            {
-                Debug.Log("Yaaa");
-            }
-
-        }
-
-    }
+   
+    
 }
